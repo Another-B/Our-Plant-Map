@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "aws-lambda": "^1.0.7",
+    "exif-parser": "^0.1.12",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5"
+  }
+}
