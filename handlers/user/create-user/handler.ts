@@ -5,16 +5,20 @@ import { AppDataSource } from "../../../src/common/datasource";
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     await AppDataSource.initialize();
-    const { userId } = event.pathParameters || {};
-    if (!userId) throw new Error("아이디를 입력해주세요");
 
-    const user = await AppDataSource.getRepository(User).findOne({ where: { id: Number(userId) } });
-    const userInput = user ? user : "유저 없음";
+    const user = new User({
+        name: "유저1",
+        nickname: "닉네임1",
+        email: "user1@gmail.com",
+    });
+
+    const newUser = await AppDataSource.getRepository(User).save(user);
+
     try {
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: userInput,
+                message: newUser,
             }),
         };
     } catch (err) {

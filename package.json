@@ -1,20 +1,19 @@
 {
-  "name": "hello_world",
+  "name": "our_plant_map",
   "version": "1.0.0",
-  "description": "hello world sample for NodeJS",
-  "main": "app.js",
-  "repository": "https://github.com/awslabs/aws-sam-cli/tree/develop/samcli/local/init/templates/cookiecutter-aws-sam-hello-nodejs",
-  "author": "SAM CLI",
+  "author": "anotherB",
   "license": "MIT",
   "scripts": {
     "unit": "jest",
     "lint": "eslint '*.ts' --quiet --fix",
     "compile": "tsc",
-    "test": "npm run compile && npm run unit"
+    "test": "npm run compile && npm run unit",
+    "start": "ts-node src/common/datasource.ts"
   },
   "dependencies": {
     "esbuild": "^0.14.14",
     "mysql2": "^3.5.2",
+    "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.17",
     "typeorm-naming-strategies": "^4.1.0"
   },

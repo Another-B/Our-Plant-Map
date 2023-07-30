@@ -3,7 +3,7 @@ import { BaseEntity } from "../common/base.entity";
 
 @Entity({ name: "tb_picture" })
 export class Picture extends BaseEntity {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ type: "bigint" })
     id: number;
 
     @Column({ type: "bigint" })

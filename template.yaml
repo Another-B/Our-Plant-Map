@@ -1,18 +1,27 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  our-plant-map
-
   Sample SAM Template for our-plant-map
   
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 10
 
 Resources:
+  PlantApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref Env
+      OpenApiVersion: "3.0.0"
+      EndpointConfiguration:
+        Type: REGIONAL
+      Cors:
+        AllowOrigin: "'*'"
+        AllowMethods: "'*'"
+        AllowHeaders: "'Content-Type'"
+
   GetUserFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function 
     Properties:
       FunctionName: get-user
       CodeUri: handlers/user/get-user
@@ -22,15 +31,41 @@ Resources:
         - x86_64
       Events:
         GetUser:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: Api
           Properties:
             Path: /users/{userId}
             Method: get
-    Metadata: # Manage esbuild properties
+            RestApiId:
+              Ref: PlantApiGateway
+    Metadata:
       BuildMethod: esbuild
       BuildProperties:
         Minify: true
         Target: "es2020"
-        # Sourcemap: true
+        EntryPoints: 
+          - handler.ts
+
+  CreateUserFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      FunctionName: create-user
+      CodeUri: handlers/user/get-user
+      Handler: handler.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      Events:
+        CreateUser:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: post
+            RestApiId:
+              Ref: PlantApiGateway
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: "es2020"
         EntryPoints: 
           - handler.ts

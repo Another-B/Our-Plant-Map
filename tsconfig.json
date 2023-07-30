@@ -6,11 +6,12 @@
     "strict": true,
     "preserveConstEnums": true,
     "noEmit": true,
-    "sourceMap": false,
-    "module": "es2015",
+    "sourceMap": true,
+    "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true // typeOrm 공식문서 
   },
 }

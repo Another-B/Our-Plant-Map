@@ -3,7 +3,12 @@ import { BaseEntity } from "../common/base.entity";
 
 @Entity({ name: "tb_user" })
 export class User extends BaseEntity {
-    @PrimaryGeneratedColumn()
+    constructor(properties: object) {
+        super();
+        Object.assign(this, properties);
+    }
+
+    @PrimaryGeneratedColumn({ type: "bigint" })
     id: number;
 
     @Column({ type: "varchar", length: 20 })
