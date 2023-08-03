@@ -13,7 +13,11 @@
     "test": "npm run compile && npm run unit"
   },
   "dependencies": {
-    "esbuild": "^0.14.14",
+    "axios": "^1.4.0",
+    "esbuild": "^0.14.54",
+    "exif-parser": "^0.1.12",
+    "form-data": "^4.0.0",
+    "fs": "^0.0.1-security",
     "mysql2": "^3.5.2",
     "typeorm": "^0.3.17",
     "typeorm-naming-strategies": "^4.1.0"
@@ -21,7 +25,7 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92",
     "@types/jest": "^29.2.0",
-    "@types/node": "^18.11.4",
+    "@types/node": "^18.17.1",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
     "eslint": "^8.8.0",

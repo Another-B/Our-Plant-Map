@@ -11,11 +11,11 @@ Globals:
     Timeout: 10
 
 Resources:
-  GetUserFunction:
+  GetMetadataFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      FunctionName: get-user
-      CodeUri: handlers/user/get-user
+      FunctionName: get-metadata
+      CodeUri: handlers/picture/get-metadata
       Handler: handler.handler
       Runtime: nodejs18.x
       Architectures:
@@ -24,8 +24,8 @@ Resources:
         GetUser:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /users/{userId}
-            Method: get
+            Path: /picture
+            Method: post
     Metadata: # Manage esbuild properties
       BuildMethod: esbuild
       BuildProperties:
