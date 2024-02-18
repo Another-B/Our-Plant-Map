@@ -8,10 +8,7 @@ function encodeImageToBase64(filePath: string): string {
 }
 
 // base64 인코딩된 이미지를 NestJS 서버에 POST 요청으로 보내는 함수
-async function uploadImageToServer(
-  imageBase64: string,
-  url: string,
-): Promise<void> {
+async function uploadImageToServer(imageBase64: string, url: string): Promise<void> {
   const requestBody = {
     base64Image: `${imageBase64}`,
   };
